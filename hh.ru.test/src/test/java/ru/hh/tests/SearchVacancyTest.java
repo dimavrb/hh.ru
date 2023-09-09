@@ -16,10 +16,9 @@ public class SearchVacancyTest extends TestBase {
     SearchResults searchResults = new SearchResults();
 
     @CsvSource({"Водитель", "Менеджер",})
-
     @ParameterizedTest(name = "Проверка поиска вакансии {0}")
     @Tag("web")
-    void searchVacancy(String vacancy) {
+    void searchVacancyTest(String vacancy) {
         mainPage.openPage("");
         mainPage.setInputVacancy(vacancy);
         mainPage.clickToSearchButton();
@@ -29,9 +28,8 @@ public class SearchVacancyTest extends TestBase {
     }
 
     @Test
-
     @DisplayName("Проверка поиска пустой строки")
-    void searchEmptyVacancy() {
+    void searchEmptyVacancyTest() {
 
         mainPage.openPage("");
         mainPage.setInputVacancy("");
@@ -44,7 +42,7 @@ public class SearchVacancyTest extends TestBase {
     @Test
     @Tag("full-regress")
     @DisplayName("Проверка поиска несуществующей вакансии")
-    void searchFail() {
+    void searchFailTest() {
 
         mainPage.openPage("");
         mainPage.setInputVacancy("Несуществующая вакансия");
@@ -56,9 +54,8 @@ public class SearchVacancyTest extends TestBase {
 
     @ValueSource(strings = {"Подработка", "Исключить слова", "Уровень дохода", "Регион"})
     @ParameterizedTest(name = "Проверка наличия фильтра {0}")
-
     @Tag("full-regress")
-    void shouldFilter(String value) {
+    void shouldFilterTest(String value) {
 
         mainPage.openPage("");
         mainPage.setInputVacancy("Водитель");
@@ -71,7 +68,7 @@ public class SearchVacancyTest extends TestBase {
     @CsvFileSource(resources = "/test.csv")
     @ParameterizedTest(name = "Проверка наличия значения {0} в фильтре")
     @Tag("full-regress")
-    void shouldFilterSubCategory(String vacancy) {
+    void shouldFilterSubCategoryTest(String vacancy) {
 
         mainPage.openPage("");
         mainPage.setInputVacancy(vacancy);
